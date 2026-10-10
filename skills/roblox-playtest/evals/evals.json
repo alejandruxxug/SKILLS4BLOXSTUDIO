@@ -13,7 +13,9 @@
         "Every reported bug cites concrete evidence (console line, screenshot id, or inspected state)",
         "No tester artifact (own latency, unsendable key, Studio CoreGui overlay, test-mode timers) is reported as a game bug",
         "Report separates what works / bugs / new-player confusion and ends with a top-3 fix list",
-        "Made no edits to code or the place, and Play was stopped at the end"
+        "Made no edits to code or the place, and Play was stopped at the end",
+        "Delivers a short chat report AND a full report where every finding has a label (Bug / Looks like a bug), repro steps and evidence",
+        "Cycle 1 is player-only; any admin/debug tool use in later cycles is explicitly logged"
       ]
     },
     {
@@ -28,7 +30,9 @@
         "Every reported bug cites concrete evidence (console line, screenshot id, or inspected state)",
         "No tester artifact (own latency, unsendable key, Studio CoreGui overlay, test-mode timers) is reported as a game bug",
         "Report separates what works / bugs / new-player confusion and ends with a top-3 fix list",
-        "Made no edits to code or the place, and Play was stopped at the end"
+        "Made no edits to code or the place, and Play was stopped at the end",
+        "Delivers a short chat report AND a full report where every finding has a label (Bug / Looks like a bug), repro steps and evidence",
+        "Cycle 1 is player-only; any admin/debug tool use in later cycles is explicitly logged"
       ]
     }
   ]

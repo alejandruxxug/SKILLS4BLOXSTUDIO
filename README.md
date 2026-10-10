@@ -6,7 +6,7 @@ Open-source [Claude Code](https://claude.com/claude-code) skills for building an
 
 | Skill | What it does |
 |---|---|
-| [`roblox-playtest`](skills/roblox-playtest/SKILL.md) | A blind, first-time-player playtest: Claude starts Play in Studio, goes through your game like a brand-new player who knows nothing about it, then reports what works, real bugs, where a new player gets confused, polish issues, and the top 3 things to fix. |
+| [`roblox-playtest`](skills/roblox-playtest/SKILL.md) | A blind, first-time-player playtest: Claude starts Play in Studio, goes through your game like a brand-new player who knows nothing about it, then gives you a short report (best moments, bugs, confusion, polish, top 3 fixes) plus a full evidence-backed report a coding agent can plan fixes from. It separates real bugs from tester artifacts (its own latency, Studio overlays, test-mode timers) so you don't chase ghosts. |
 
 ## Requirements
 
