@@ -1,0 +1,35 @@
+{
+  "skill_name": "roblox-playtest",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "hey claude can you act as a playtester for my game, just play through roblox studio do what you need. read as little as possible about the game, go through it as a completely wiped session",
+      "expected_output": "A blind play-through of the open Studio game on fresh data, ending in a structured feedback report (working / bugs / confusing / polish / risk / top 3) with tester artifacts separated from real bugs.",
+      "files": [],
+      "assertions": [
+        "Did not read the game's design notes or source code before/during play (per log.md)",
+        "Checked the console for fresh/unsaved data before playing and said so",
+        "Played through at least one full core loop plus the first transition after it",
+        "Every reported bug cites concrete evidence (console line, screenshot id, or inspected state)",
+        "No tester artifact (own latency, unsendable key, Studio CoreGui overlay, test-mode timers) is reported as a game bug",
+        "Report separates what works / bugs / new-player confusion and ends with a top-3 fix list",
+        "Made no edits to code or the place, and Play was stopped at the end"
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "play my game like a kid who just joined and tell me what's confusing in the first 5 minutes",
+      "expected_output": "A first-minutes play-through focused on confusion points, reported from a new player's perspective with concrete evidence.",
+      "files": [],
+      "assertions": [
+        "Did not read the game's design notes or source code before/during play (per log.md)",
+        "Checked the console for fresh/unsaved data before playing and said so",
+        "Played through at least one full core loop plus the first transition after it",
+        "Every reported bug cites concrete evidence (console line, screenshot id, or inspected state)",
+        "No tester artifact (own latency, unsendable key, Studio CoreGui overlay, test-mode timers) is reported as a game bug",
+        "Report separates what works / bugs / new-player confusion and ends with a top-3 fix list",
+        "Made no edits to code or the place, and Play was stopped at the end"
+      ]
+    }
+  ]
+}
