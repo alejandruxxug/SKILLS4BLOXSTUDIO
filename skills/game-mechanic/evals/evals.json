@@ -1,0 +1,17 @@
+{
+  "skill_name": "game-mechanic",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "ok so for my tower defense game (notes are in DESIGN.md) i want a hero egg system. you hatch eggs and get heroes that stand next to towers and buff them, common to mythic. eggs cost gems. also a mythic egg for robux. i want the hatch to have like a crack crack BOOM animation and mythics should be announced. im heading out now so just use your judgment on anything you'd ask me and write the full spec md so its ready to build",
+      "expected_output": "A build-ready spec .md for the hero egg system grounded in DESIGN.md, flagging the Robux mythic egg against the dev's own rule, with assumptions listed.",
+      "files": ["fixtures/tower-game/DESIGN.md"]
+    },
+    {
+      "id": 1,
+      "prompt": "Lava Leap needs a daily spin wheel. spin once a day free, prizes are coins and trails, and extra spins for robux. NOTES.md has the game. I won't be around to answer questions so define the whole mechanic with your best calls and give me the spec file",
+      "expected_output": "A build-ready spin wheel spec grounded in NOTES.md, raising paid random spins for a 9-14 audience, with odds, data, server/client and build order.",
+      "files": ["fixtures/obby-game/NOTES.md"]
+    }
+  ]
+}
