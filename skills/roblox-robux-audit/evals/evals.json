@@ -1,0 +1,68 @@
+{
+  "skill_name": "roblox-robux-audit",
+  "evals": [
+    {
+      "id": 1,
+      "name": "coin-tapper-full-audit",
+      "prompt": "im launching my coin tapper sim next week and running ads on it. can you check everything robux related in {REPO} so we dont accidentally scam kids? dont change any code just tell me whats wrong",
+      "fixture": "fixtures/coin-tapper",
+      "expected_output": "A ranked report with a 'not safe yet' verdict that finds the planted bugs and doesn't flag the honest BEST VALUE tag.",
+      "assertions": [
+        {"name": "granted-when-player-missing", "text": "Flags that ProcessReceipt returns PurchaseGranted when the player isn't in the server (ShopService) as a charged-for-nothing bug"},
+        {"name": "save-result-ignored", "text": "Flags that PurchaseGranted is returned even if DataService:Save fails (the pcall result is ignored)"},
+        {"name": "no-receipt-dedupe", "text": "Flags that PurchaseId is never stored/checked, so a retried receipt grants twice"},
+        {"name": "failed-load-wipes-save", "text": "Flags that a failed GetAsync starts fresh data that is later saved over the real save"},
+        {"name": "no-session-lock-or-bindtoclose", "text": "Flags the missing session lock (GetAsync/SetAsync, server hopping) and/or the missing BindToClose"},
+        {"name": "currency-not-policy-gated", "text": "Flags that coin bundles (and/or the starter coins) are sold with no PolicyService check although coins buy random eggs"},
+        {"name": "lucky-egg-policy", "text": "Flags the LUCKY EGG pass as a paid random item with no odds shown before purchase and/or no PolicyService gate"},
+        {"name": "double-coins-scope", "text": "Flags that 2x COINS promises 'EVERYTHING' but only doubles tapping (not quests / daily chest)"},
+        {"name": "vip-tag-missing", "text": "Flags that the Starter Pack's VIP chat tag is never shown (the VIP attribute is set but ChatTags never reads it)"},
+        {"name": "price-label-mismatch", "text": "Flags that the 10,000 Coins card says R$ 99 while the product costs R$ 149"},
+        {"name": "fake-was-price", "text": "Flags the 'WAS R$ 999' crossed-out price as an invented reference price"},
+        {"name": "claim-starter-exploit", "text": "Flags the ClaimStarterBonus remote as a free-starter-pack exploit (trusts a client flag)"},
+        {"name": "loss-chasing-prompt", "text": "Flags RoundEndUI prompting a coin purchase right after losing a round"},
+        {"name": "no-false-best-value", "text": "Does NOT call the BEST VALUE tag on 50,000 Coins false (it is the best coins per R$)"},
+        {"name": "verdict-not-safe", "text": "Gives a clear verdict that it is not safe to sell yet (or only with fixes)"},
+        {"name": "item-table", "text": "Includes a table/list of every item (4 products + 2 passes) with a status"},
+        {"name": "scenarios", "text": "The must-fix findings each come with a concrete player scenario"},
+        {"name": "no-code-edits", "text": "No file in the repo was edited"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "pet-hatchery-state-bugs",
+      "prompt": "Before I publish Pet Hatchery, please audit the purchase code in {REPO}. Is it safe to sell? I want a report I can work from.",
+      "fixture": "fixtures/pet-hatchery",
+      "expected_output": "A report that finds the state/timing bugs and the farmable refund, and marks the (correct) save layer and receipt idempotency as fine.",
+      "assertions": [
+        {"name": "inventory-full-granted", "text": "Flags that a pet purchase with a full inventory returns PurchaseGranted with only a toast (charged for nothing)"},
+        {"name": "pending-not-saved", "text": "Flags that the Gem Shop's pending Robux deal lives only in memory (not saved before the prompt)"},
+        {"name": "single-pending-slot", "text": "Flags that one pending slot per player is overwritten by a second tap, so a slow receipt gets the wrong deal / the refund"},
+        {"name": "refund-farmable", "text": "Flags the no-deal fallback (robux * 2 gems) as farmable: self-prompting the product gives more gems than it costs"},
+        {"name": "starter-fake-scarcity", "text": "Flags the starter countdown as fake (restarts every join, not tied to firstJoin) and/or the 24 h window never being enforced on the server"},
+        {"name": "triple-credit-lost", "text": "Flags that a TRIPLE HATCH credit is spent before the inventory-full check, so it can be lost"},
+        {"name": "pass-not-applied-until-rejoin", "text": "Flags that passes bought in game aren't applied until the next join (no PromptGamePassPurchaseFinished)"},
+        {"name": "daily-egg-web-restricted", "text": "Flags that a restricted player who buys DAILY EGG (e.g. on the website) gets nothing"},
+        {"name": "gems-not-policy-gated", "text": "Flags that Gems100 / the starter gems are sold without a PolicyService check although gems buy random eggs"},
+        {"name": "save-layer-fine", "text": "Does NOT flag the session-locked SaveService, receipt de-dupe or NotProcessedYet-on-missing-player as must-fix bugs (it treats them as working)"},
+        {"name": "safe-refund-fix", "text": "The suggested fix for the refund never pays more than the R$ charged (or keys deals so no fallback is needed)"},
+        {"name": "verdict-not-safe", "text": "Gives a clear verdict that it is not safe to sell yet (or only with fixes)"},
+        {"name": "no-code-edits", "text": "No file in the repo was edited"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "coin-tapper-narrow-ask",
+      "prompt": "my friend said my starter pack might be kinda misleading lol. can u look at the robux stuff in {REPO}",
+      "fixture": "fixtures/coin-tapper",
+      "expected_output": "Still a full Robux audit: the starter problems plus the receipt/save bugs that also affect the starter.",
+      "assertions": [
+        {"name": "vip-tag-missing", "text": "Flags that the Starter Pack's VIP chat tag never appears"},
+        {"name": "claim-starter-exploit", "text": "Flags the ClaimStarterBonus remote as a free-starter-pack exploit"},
+        {"name": "receipt-core-bugs", "text": "Also flags at least one ProcessReceipt bug (Granted when the player is missing, save result ignored, or no PurchaseId de-dupe)"},
+        {"name": "beyond-starter", "text": "Covers Robux items beyond the starter pack (bundles and/or passes)"},
+        {"name": "no-code-edits", "text": "No file in the repo was edited"}
+      ]
+    }
+  ]
+}
