@@ -1,0 +1,45 @@
+{
+  "skill_name": "roblox-bug-solver",
+  "notes": "Runs use a COPY of the fixture (never the fixture itself). Studio is not available for these games, so the honest outcome is a traced-but-not-reproduced cause plus a repro the developer can run. The developer is away: no answers to questions, so the run should end at the explanation + plan, without editing code.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "daily-chest-stuck",
+      "prompt": "theres a bug in my game ({REPO}). some players say the daily chest is stuck on 'Come back later!' forever, like days later still nothing. it worked fine every time i tested in studio. studio isnt open with this game rn and im going to sleep so dont wait on me for questions, just figure out whats going on",
+      "fixture": "fixtures/daily-chest",
+      "expected_output": "Finds that lastChest is stored with os.clock() (seconds since this server/process started) and compared on another server, explains the stuck-forever story and why Studio hid it, proposes os.time() plus handling of old saves, and stops for the OK without editing.",
+      "assertions": [
+        {"name": "root-cause-os-clock", "text": "Identifies os.clock() as the root cause: it measures time since the server/process started, not real time, so it isn't comparable across servers"},
+        {"name": "root-cause-location", "text": "Points to ChestService (TimeLeft and/or the claim line that sets lastChest) with a file reference"},
+        {"name": "player-story", "text": "Explains it as a player sequence: claim on a long-running server → saved big number → join a fresh server with a small clock → elapsed is negative/small → stuck"},
+        {"name": "why-studio-hid-it", "text": "Explains why it worked in Studio (e.g. Studio's process clock keeps growing across Plays, or tests happened on one long session)"},
+        {"name": "fix-os-time", "text": "Proposes using os.time() (or DateTime/workspace:GetServerTimeNow) for the saved timestamp"},
+        {"name": "old-saves-migration", "text": "Handles players who already have an os.clock() value saved (e.g. treat implausible/old values as claimable or reset them)"},
+        {"name": "no-red-herring", "text": "Does NOT blame the UI's 00:00 rounding or the DataService merge as the cause"},
+        {"name": "repro-honesty", "text": "Says honestly that it could not reproduce in Studio (or what it did instead) and does not invent console output or test results"},
+        {"name": "repro-steps-given", "text": "Gives concrete steps the developer can run to reproduce or confirm the bug and to verify the fix"},
+        {"name": "waits-for-ok", "text": "Stops after the explanation and plan, asking for the OK, instead of presenting an applied fix"},
+        {"name": "no-code-edits", "text": "No file in the game copy was edited"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "round-coins-carry-over",
+      "prompt": "Bug report from my tester for {REPO}: if you leave the game and come back a few rounds later you still have your coins from the old round on the leaderboard, so you start the round ahead. Also sometimes at the end of a round only 2 people get a trophy instead of 3. Can you look into it? Studio's busy with another project and I'm away, so don't wait for my answers.",
+      "fixture": "fixtures/round-coins",
+      "expected_output": "Finds that coins are kept by UserId and only reset for players in the server when a round starts, so a player who left keeps a stale entry (restored on rejoin) and stays in Standings (taking a top-3 spot whose trophy goes to nobody). Proposes tying coins to the round so a same-round reconnect still keeps them, and stops for the OK.",
+      "assertions": [
+        {"name": "cause-reset-only-present", "text": "Identifies that _startRound resets coins only for players currently in the server, so a player who left keeps their old _coins[UserId] entry"},
+        {"name": "cause-restore-on-join", "text": "Identifies that PlayerAdded restores leaderstats from that stale _coins entry"},
+        {"name": "cause-trophy-ghosts", "text": "Connects the 2-trophies symptom to Standings including players who left (GetPlayerByUserId returns nil, so that top-3 trophy goes to nobody)"},
+        {"name": "one-root-cause", "text": "Explains both symptoms as the same root cause (round coins outlive the round / never cleaned up for absent players)"},
+        {"name": "keeps-reconnect-intent", "text": "Keeps the intended wifi-blip behavior (rejoining in the SAME round keeps your coins), e.g. by storing the round number with the coins or clearing the table at round start"},
+        {"name": "file-references", "text": "Points to RoundService and CoinService with file references"},
+        {"name": "repro-honesty", "text": "Says honestly that it could not reproduce in Studio (or what it did instead) and does not invent console output or test results"},
+        {"name": "repro-steps-given", "text": "Gives concrete steps to reproduce (leave mid-round, wait for a new round, rejoin) and to verify the fix"},
+        {"name": "waits-for-ok", "text": "Stops after the explanation and plan, asking for the OK, instead of presenting an applied fix"},
+        {"name": "no-code-edits", "text": "No file in the game copy was edited"}
+      ]
+    }
+  ]
+}
