@@ -1,0 +1,23 @@
+{
+  "skill_name": "roblox-sound-pass",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "my obby's sounds are so repetitive lol, every checkpoint plays the exact same ding and the win pad plays the same fanfare as the checkpoints. theres also only one song for the whole game. the code is in src/ (rojo). can you look at it and tell me what you'd change? dont build anything yet, i want to pick",
+      "expected_output": "An audit table (moment → frequency → id → size) that flags the checkpoint ding hotspot, the checkpoint/win size mismatch and the single song, identifies signature sounds to keep fixed, and a plain-language menu of options (pools, jitter, tiers, hero hit for the win pad, playlists, mix, audition) with a recommendation. No code edits.",
+      "files": ["fixtures/obby/src"]
+    },
+    {
+      "id": 1,
+      "prompt": "ok go for it on my obby (src/, rojo): shuffle pools, jitter, tiers so the checkpoint is small and finishing is HUGE with the layered hit, and a couple of songs that rotate each round. keep the start horn as is, its our thing. use whatever licensed ids you think fit, I'll pick by ear later. no studio available right now so just do the code",
+      "expected_output": "The engine (SoundBank/Sounds/Music) added to the project and wired into the existing call sites: checkpoint → tiny/nice tier pool, finish → hero/huge, start horn exact with one take, a music playlist rolled per round, old hardcoded ids removed. Says honestly that ids aren't load-checked (no Studio) and it can't judge how they sound.",
+      "files": ["fixtures/obby/src"]
+    },
+    {
+      "id": 2,
+      "prompt": "bake my audition picks. I already copied them out of studio since play is closed: {\"Cheer\":[9114015379,9114015460,9114015329],\"Fanfare\":[1844584698,1842141543,1837762472],\"MusicMain\":[9042763691,1841067356]}. the bank is src/client/Audio/SoundBank.luau",
+      "expected_output": "SoundBank.luau pools rewritten to exactly the kept ids (signature-first order kept, new candidates appended), keys kept only for ids still referenced, unrelated pools untouched, the candidates removed from the audition panel config, and a before → after summary per pool.",
+      "files": ["fixtures/baked/src"]
+    }
+  ]
+}
