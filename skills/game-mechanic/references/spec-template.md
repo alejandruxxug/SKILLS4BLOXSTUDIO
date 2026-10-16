@@ -38,6 +38,10 @@ phone layout · which existing theme/components to reuse. ASCII sketch if useful
 Beat table: | Beat | Time | What happens | Rarity differences |
 What other players see (nearby / server / global).
 
+**Assets needed** (handed to `roblox-art-pass`): | # | Asset | Where it's seen | Kind (3D model / UI screen / icon / texture / sprite / thumbnail) | Size or budget | Sketch/reference from the developer | Priority (v0.1 / later) |
+**Art timing:** greybox first (placeholders until the loop is approved) / art first (and why). Default = the game's build mode.
+Reuse existing assets where possible and say which. Placeholders (parts, emoji) are fine for the first build; note which ones.
+
 ## 9. Onboarding / tutorial
 When, who guides, rigged outcome, steps, skip, returning players.
 

@@ -1,0 +1,20 @@
+# Roblox place/model files (the source of truth is src/)
+*.rbxl
+*.rbxlx
+*.rbxm
+*.rbxmx
+*.rbxl.lock
+*.rbxlx.lock
+
+# Tooling
+/Packages
+/ServerPackages
+sourcemap.json
+
+# OS / editors / notes
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+__pycache__/
+.obsidian/
+CLAUDE.local.md

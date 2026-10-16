@@ -56,6 +56,9 @@ Use `AskUserQuestion` (4 questions per round, 2–4 options each, recommended op
 2. **Rules & randomness**: odds, choice, duplicates, pity/bad-luck protection, limits
 3. **Where it lives**: screens, buttons, world locations, when it's allowed (phases/zones)
 4. **Feel**: animation beats, what's special for rare outcomes, what other players see
+   + **art timing** for this mechanic: follow the game's build mode (CLAUDE.md / hub: greybox
+   first or art first) unless its fun *is* its visuals (a reveal, an entrance) and it should be
+   art-first. Ask only when it's not obvious; record the answer in the spec.
 5. **Onboarding**: how a new player meets it, rigged first experience, tutorial steps
 6. **Content & extras**: roster/items, Robux store items, what you should do next
 
@@ -108,6 +111,8 @@ folder's convention. Use the structure in `references/spec-template.md`. The non
 - **Content tables with real proposed numbers** (odds per tier summing to 100%, prices, bonuses).
   Mark them as tunables and say where they'll live (a config module).
 - **Animation beats with timings**, and what's different per rarity.
+- **Assets needed**: every model, screen, icon and effect the mechanic needs, with where it's seen
+  and any sketch the developer has. `roblox-art-pass` starts from this list.
 - **Server/client split for Roblox**: all randomness, currency changes and saves happen on the
   server; the client only animates results it's told. Remotes listed with their validation.
   Robux purchases go through `MarketplaceService.ProcessReceipt` (developer products) or
