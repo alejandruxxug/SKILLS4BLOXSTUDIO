@@ -86,13 +86,22 @@ Read, quickly:
 
 Before drafting anything, offer it plainly:
 
-> "Do you have sketches, reference pictures or a style for any of these? Drop them in
-> `docs/Art/Sketches/` (your drawings) or `docs/Art/References/` (screenshots, photos, other
-> games), or give me a path. A sketch of the shape, even a rough one on paper photographed with a
-> phone, makes the 3D model much closer to what you imagine."
+> "Do you have sketches, reference pictures or a style for any of these? **Drop them straight
+> onto the 🖼️ Inputs page of the Figma board**, or tell me where they are and I'll put them there
+> for you. A sketch of the shape, even a rough one on paper photographed with a phone, makes the
+> 3D model much closer to what you imagine."
 
-- Images pasted into chat may not exist as files on disk; ask for a file or a path, and copy it
-  into the right folder with a clear name (`sketch-<asset>-v1.png`).
+The Figma board is the full design board, so every input lands there, whatever its source:
+- **Dropped on the board** by the developer → find the new images on 🖼️ Inputs, label them
+  (asset, kind, date), and export a copy to `docs/Art/Sketches/` or `docs/Art/References/`
+  (Figwright `save_image_fills`, or a screenshot of the frame): Blender needs a local file to load
+  a reference image, and the docs keep the log.
+- **A folder or path** → copy the files into `docs/Art/` with clear names
+  (`sketch-<asset>-v1.png`), then import them onto 🖼️ Inputs, grouped by asset.
+- **Pasted into chat** → may not exist as a file on disk; ask them to drop it on the board or give
+  a path.
+- No Figma MCP connected → the `docs/Art/` folders are the inbox, and say the board will get
+  them once Figma is connected.
 - **Look at every image** (Read it). Write down what you see: proportions, silhouette, key
   features, colors, and what's ambiguous (the back of the model, the scale).
 - Log each one in the Style Guide's inputs table: file · kind (sketch / reference / style) · for

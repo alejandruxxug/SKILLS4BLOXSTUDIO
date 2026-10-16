@@ -92,16 +92,23 @@ says what will actually happen. Three rounds is usually enough:
    architecture (Services/Controllers (Recommended) or their own), the agent team (Opus art + lead,
    Sonnet builder + tester, the main session orchestrating (Recommended), or solo), git remote
    (private GitHub via `gh` (Recommended), public, local only).
-4. **Art inputs**: offer it plainly. "Do you have sketches, reference pictures or a style you're
-   going for? Drop them in `docs/Art/Sketches/` (your drawings) or `docs/Art/References/`
-   (screenshots, photos, games), or give me a path, and I'll copy them there." Sketches really help
-   the 3D modelling later: the art agent loads them as reference images in Blender and models
-   against them. Images pasted into chat may not exist as files, so ask for files or a path. Look
-   at each one (Read the image) and log it in the Style Guide's inputs table: what it's for and
-   what to take from it. No art yet is fine; say they can add some any time.
-   Also ask for (or offer to create) the game's **Figma file**: it becomes the visual board where
-   inputs, reviews and approved art all land (`roblox-art-pass` fills it). Record its name/key and
-   the Figma MCP to use in CLAUDE.md and Tools & Setup.
+4. **The Figma board and art inputs.** First ask for (or offer to create) the game's **Figma file**:
+   it's the full design board where inputs, reviews and approved art all land (`roblox-art-pass`
+   fills it). Record its name/key and the Figma MCP to use in CLAUDE.md and Tools & Setup.
+   Then offer, plainly: "Do you have sketches, reference pictures or a style you're going for?
+   **Drop them straight onto the 🖼️ Inputs page of the Figma board**, or tell me where they are
+   (a folder, a path) and I'll put them on the board for you." Sketches really help the 3D
+   modelling later: the art agent loads them as reference images in Blender and models against
+   them. Then:
+   - Whatever the source, every input ends up **on the board** (🖼️ Inputs, grouped by asset,
+     labelled) **and** as a file in `docs/Art/Sketches/` or `docs/Art/References/`: Blender needs a
+     local file to load a reference image. Board → disk: export the image fills (Figwright
+     `save_image_fills` / a frame screenshot). Disk → board: import the image.
+   - Images pasted into chat may not exist as files; ask them to drop it on the board or give a path.
+   - Look at each one (Read the image) and log it in the Style Guide's inputs table: what it's
+     for and what to take from it.
+   No art yet is fine; say they can drop some on the board any time.
+   No Figma (or Simple mode)? Then the `docs/Art/` folders are the inbox.
 
 If they're away or said "use your judgment", take the recommended options and list them under
 **Assumptions** in the hub note.
