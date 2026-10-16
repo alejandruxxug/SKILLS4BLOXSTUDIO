@@ -94,7 +94,12 @@ says what will actually happen. Three rounds is usually enough:
    (private GitHub via `gh` (Recommended), public, local only).
 4. **The Figma board and art inputs.** First ask for (or offer to create) the game's **Figma file**:
    it's the full design board where inputs, reviews and approved art all land (`roblox-art-pass`
-   fills it). Record its name/key and the Figma MCP to use in CLAUDE.md and Tools & Setup.
+   fills it). **Which Figma MCP:** if the developer's global or project instructions name one, use
+   it; if several are connected and nothing says, ask (some have monthly call caps that a busy
+   board burns through). Record the file name/key and the MCP in CLAUDE.md and Tools & Setup.
+   **Create the board's pages now** (🖼️ Inputs, 🎨 Style, 🧪 Reviews, ✅ Approved), with a short
+   note on 🖼️ Inputs ("drop sketches here, one frame per asset"), so the developer has somewhere
+   to drop sketches today, not after the first art pass.
    Then offer, plainly: "Do you have sketches, reference pictures or a style you're going for?
    **Drop them straight onto the 🖼️ Inputs page of the Figma board**, or tell me where they are
    (a folder, a path) and I'll put them on the board for you." Sketches really help the 3D
